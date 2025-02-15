@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const verifyToken = (req, res, next) => {
+const authenticate = (req, res, next) => {
     const token = req.header("Authorization");
 
     if (!token) {
@@ -19,6 +19,7 @@ const verifyToken = (req, res, next) => {
 // Middleware to allow only specific roles (admin, organizer)
 const authorizeRoles = (...roles) => {
     return (req, res, next) => {
+       // console.log(roles);
         if (!roles.includes(req.user.role)) {
             return res.status(403).json({ message: "Access denied. Insufficient permissions." });
         }
@@ -26,6 +27,6 @@ const authorizeRoles = (...roles) => {
     };
 };
 
-module.exports = { verifyToken, authorizeRoles };
+module.exports = { authenticate, authorizeRoles };
 
 

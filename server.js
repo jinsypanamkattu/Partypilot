@@ -25,11 +25,11 @@ app.use("/api/event", eventRoutes);
 const bookingRoutes = require("./routes/bookingRoutes");
 app.use("/api/booking", bookingRoutes);
 
-//const attendeeRoutes = require("./routes/attendeeRoutes");
-//app.use("/api/attendee", attendeeRoutes);
-
 const paymentRoutes = require("./routes/paymentRoutes");
 app.use("/api/payments", paymentRoutes);
+
+const reportRoutes = require("./routes/reportRoutes");
+app.use("/api/reports", reportRoutes);
 
 
 
