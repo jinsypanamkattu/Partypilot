@@ -1,44 +1,4 @@
-# Node modules
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
+git add .gitignore  # Mark it as resolved
+git rebase --continue  # Continue the rebase
+git push origin master --force  # Force push changes
 
-# Logs
-logs/
-*.log
-debug.log
-error.log
-pm2.log
-pm2.pid
-
-# Environment variables
-.env
-.env.local
-.env.development
-.env.production
-.env.test
-.DS_Store
-
-# Build and dependencies
-dist/
-build/
-coverage/
-.tmp/
-
-# Editor & System Files
-.vscode/
-.idea/
-*.swp
-*.swo
-Thumbs.db
-
-# Database files
-*.sqlite
-*.sqlite3
-*.db
-*.db-wal
-*.db-shm
-dump.rdb
