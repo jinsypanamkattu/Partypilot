@@ -1,39 +1,51 @@
 const mongoose = require("mongoose");
 
 const EventSchema = new mongoose.Schema({
+    eventType: { type: String, enum: ['Corporate', 'Social', 'Public', 'Virtual'], default: 'Public' },
     name: { type: String, required: true },
-    date: { type: Date, required: true },
+    
+    start: {type:Date,
+        required: true,
+       
+    },
+    end: {type:Date,
+        required:true,
+       
+    },
     location: { type: String, required: true },
     description: { type: String, required: true },
-    status: { type: String, enum: ['draft', 'published', 'closed'], default: 'draft' },
+    status: { type: String, enum: ['Draft', 'Published', 'Closed'], default: 'Draft' },
+    state: { type:String, enum: ['active','inactive'], default:'active' },
+    
     organizer: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    image: { type: String },
     tickets: [
         {
-            type: { type: String, required: true }, // e.g., General, VIP, Student
+            type: { type: String, enum: ['General', 'VIP', 'Student'], default: 'General',required: true }, // e.g., General, VIP, Student
             price: { type: Number, required: true },
             quantity: { type: Number, required: true },
-            sold: { type: Number, default: 0 },
+            sold: { type: Number, default: 0, min: 0 },
         }
     ],
-    promoCodes: [
-        {
-            code: { type: String, required: true, unique: true }, // e.g., "EARLYBIRD"
-            discountType: { type: String, enum: ['percentage', 'fixed'], required: true },
-            discountValue: { type: Number, required: true }, // E.g., 20% or $10
-            maxUses: { type: Number, default: 100 }, // Limit on redemptions
-            usedCount: { type: Number, default: 0 }, // Track usage
-            expirationDate: { type: Date, required: true }
-        }
-    ],
-    agenda: [
-        {
-            title: { type: String, required: true }, // e.g., "Keynote Speech"
-            description: { type: String },
-            speaker: { type: String }, // Name of the speaker or panel
-            startTime: { type: Date, required: true },
-            endTime: { type: Date, required: true }
-        }
-    ],
+    
+    
+    
     createdAt: { type: Date, default: Date.now }
 });
+
+// Virtual field for total event capacity (sum of all ticket quantities)
+/*EventSchema.virtual("capacity").get(function () {
+    console.log("Tickets:", this.tickets); // Debugging
+    if (!Array.isArray(this.tickets)) {
+      console.log("Tickets is undefined or not an array!");
+      return 0;
+    }
+    return this.tickets.reduce((sum, ticket) => sum + (ticket.quantity || 0), 0);
+  });
+  
+
+// Ensure virtuals are included in JSON and object responses
+EventSchema.set('toJSON', { virtuals: true });
+EventSchema.set('toObject', { virtuals: true });
+*/
 module.exports = mongoose.model("Event", EventSchema);

@@ -4,10 +4,11 @@ const UserSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email:{type:String,required:true},
   password: { type: String, required: true },
-  role: { type: String, enum: ["admin", "organizer", "attendee"], default: "attendee" },
+  role: { type: String, enum: ["organizer", "attendee"], default: "attendee" },
   profileImage: { type: String },
   phone: { type: String },
   address: { type: String },
+  status: { type:String,enum: ['active','inactive'], default:'active' }
 }, { timestamps: true });
 
 // Create a unique compound index on email and role
