@@ -9,28 +9,42 @@ const HeroCarousel = () => {
       title: "Corporate Conferences",
       description: "Professional planning for your next business event",
       buttonText: "Book Now",
-      buttonColor: "bg-blue-600 hover:bg-blue-700",
-      gradient: "bg-gradient-to-r from-indigo-900/80 to-purple-900/60",
+      buttonColor: "bg-gradient-to-r from-[#40E0D0] to-[#2E8B57] hover:from-[#36CFC9] hover:to-[#228B22]",
+
+    
       image: "./assets/cor.jpg"  // Replace with your image URL
     },
+    
     {
       id: 2,
       title: "Wedding Celebrations",
       description: "Create memories that last a lifetime",
       buttonText: "Plan Your Day",
       buttonColor: "bg-pink-600 hover:bg-pink-700",
-      gradient: "bg-gradient-to-r from-pink-900/80 to-orange-900/60",
-      image: "./assets/so.jpg"  // Replace with your image URL
+      
+      image: "./assets/wed1.jpg"  // Replace with your image URL
     },
     {
       id: 3,
       title: "Music Festivals",
       description: "From concept to execution, we handle it all",
       buttonText: "Get Started",
-      buttonColor: "bg-green-600 hover:bg-green-700",
-      gradient: "bg-gradient-to-r from-indigo-900/80 to-purple-900/60",
-      image: "./assets/banner1.jpg"  // Replace with your image URL
-    }
+      buttonColor: "bg-gradient-to-r from-[#40E0D0]/80 to-[#2E8B57]/80 hover:from-[#40E0D0]/100 hover:to-[#2E8B57]/100",
+
+
+      
+      image: "./assets/music1.jpeg"  // Replace with your image URL
+    },
+    {
+      id: 4,
+      title: "Virtual Events",
+      description: "Professional planning for your next virtual event",
+      buttonText: "Book Now",
+      buttonColor: "bg-gradient-to-r from-[#40E0D0]/50 to-[#1E90FF]/50 hover:from-[#36CFC9]/70 hover:to-[#007FFF]/70",
+
+    
+      image: "./assets/virtual1.jpg"  // Replace with your image URL
+    },
   ];
 
   const nextSlide = () => {
@@ -54,7 +68,7 @@ const HeroCarousel = () => {
   }, []);
 
   return (
-    <div className="relative overflow-hidden bg-gray-900 h-120">
+    <div className="relative overflow-hidden bg-gray-900 h-140">
       {/* Carousel container */}
       <div className="carousel relative w-full h-full">
         {/* Carousel Slides */}

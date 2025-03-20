@@ -28,36 +28,39 @@ const PaymentSuccess = () => {
   if (loading) return <div>Loading order details...</div>;
   
   return (
-    <div className="container mx-auto p-4">
-      <div className="bg-white rounded-lg shadow-md p-6 max-w-md mx-auto text-center">
-        <div className="mb-6">
-          <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
-          </div>
-          <h1 className="text-2xl font-bold text-green-600 mb-2">Payment Successful!</h1>
-          <p className="text-gray-600">Thank you for your purchase.</p>
-        </div>
+    <div className="container mx-auto p-6 flex justify-center items-center">
+    <div className="bg-white rounded-2xl shadow-xl p-8 max-w-lg w-full text-center">
+        {/* Success Message */}
+        <h1 className="text-3xl font-extrabold text-green-700 mb-4 drop-shadow-md">Payment Successful!</h1>
+        <p className="text-gray-600 text-lg mb-6">Thank you for your purchase.</p>
 
+        {/* Order Details */}
         {orderDetails && (
-          <div className="mb-6 text-left">
-            <h2 className="text-lg font-semibold mb-2">Order Details</h2>
-            <p>Order ID: {orderDetails.session.payment_intent}</p>
-            <p>Amount: ${(orderDetails.session.amount_total / 100).toFixed(2)}</p>
-          </div>
+            <div className="mb-6 text-left bg-gray-100 p-4 rounded-lg shadow-sm">
+                <h2 className="text-lg font-semibold mb-2 text-gray-700">Order Details</h2>
+                <p className="text-gray-800"><strong>Order ID:</strong> {orderDetails.session.payment_intent}</p>
+                <p className="text-gray-800"><strong>Amount:</strong> ${(orderDetails.session.amount_total / 100).toFixed(2)}</p>
+            </div>
         )}
-        
-        <div className="space-y-3">
-          <Link to="/profile?tab=bookings" className="block w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition duration-300">
-            View My Tickets
-          </Link>
-          <Link to="/" className="block w-full bg-gray-200 text-gray-800 py-2 rounded hover:bg-gray-300 transition duration-300">
-            Back to Events
-          </Link>
+
+        {/* Action Buttons */}
+        <div className="space-y-4">
+            <Link
+                to="/profile?tab=bookings"
+                className="block w-full py-3 text-lg font-semibold text-white rounded-lg transition-all duration-300 bg-gradient-to-r from-turquoise-400 to-green-500 hover:from-turquoise-500 hover:to-green-600 shadow-md transform hover:scale-105"
+            >
+                View My Tickets
+            </Link>
+            <Link
+                to="/"
+                className="block w-full py-3 text-lg font-semibold text-gray-800 bg-gray-200 rounded-lg transition-all duration-300 hover:bg-gray-300 shadow-md transform hover:scale-105"
+            >
+                Back to Events
+            </Link>
         </div>
-      </div>
     </div>
+</div>
+
   );
 };
 

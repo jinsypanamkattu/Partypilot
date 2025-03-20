@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Container, Typography, Button, CircularProgress, Box, Slide, Fade, Zoom, Card, CardContent, Divider } from '@mui/material';
-import { useParams, useNavigate,useLocation } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 
 import axiosInstance from "../services/axios";
 import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
@@ -11,8 +11,8 @@ import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 
 import { fetchBookingsById, setBooking } from '../redux/slices/bookingsSlice';
 const ConfirmPayment = () => {
-      const dispatch = useDispatch();
-    
+    const dispatch = useDispatch();
+
     const [paymentLoading, setPaymentLoading] = useState(false);
     const [eventName, setEventName] = useState('');
     const [paymentError, setPaymentError] = useState('');
@@ -26,15 +26,15 @@ const ConfirmPayment = () => {
     const stripe = useStripe();
     const elements = useElements();
     const location = useLocation();
-  const stateBooking = location.state?.booking;
-  const reduxBooking = useSelector((state) => state.bookings.selectedBooking);
+    const stateBooking = location.state?.booking;
+    const reduxBooking = useSelector((state) => state.bookings.selectedBooking);
 
-  const booking = stateBooking || reduxBooking; // Prioritize stateBooking
+    const booking = stateBooking || reduxBooking; // Prioritize stateBooking
 
-    
+
     //const bookings = useSelector((state) => state.bookings);
     const bookings = (useSelector((state) => state.bookings) || booking);
-    
+
     // const { eventId } = useParams();
     const navigate = useNavigate();
 
@@ -43,15 +43,15 @@ const ConfirmPayment = () => {
     if (bookingDetails === undefined) {
         bookingDetails = bookings?.selectedBooking;
 
-    } 
-    
+    }
+
 
     const bookingMessage = bookings?.bookings?.message;
-  
-       
-        
+
+
+
     useEffect(() => {
-   
+
         if (stripe && elements) {
             console.log("Stripe and Elements are ready.");
             setStripeReady(true);
@@ -133,9 +133,18 @@ const ConfirmPayment = () => {
     return (
         <Container maxWidth="sm" sx={{ minHeight: '70vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
             <Zoom in={true} timeout={1000}>
-                <Typography variant="h4" gutterBottom sx={{ fontWeight: 'bold', fontSize: '2rem' }}>
+                <Typography
+                    variant="h2"
+                    fontWeight="bold"
+                    gutterBottom
+                    sx={{
+                        color: '#789972', // Sage green color
+                        mt: -2 // Moves the title slightly up
+                    }}
+                >
                     Confirm Payment
                 </Typography>
+
             </Zoom>
             {bookingMessage && (
                 <Typography color="success" sx={{ marginBottom: '20px', fontWeight: 'bold', fontSize: '1.5rem' }}>
@@ -149,11 +158,18 @@ const ConfirmPayment = () => {
                         <CardContent>
                             <Typography variant="h6" gutterBottom>Booking Details</Typography>
                             <Typography
-                                variant="body1"
-                                sx={{ fontWeight: 'bold', color: 'blue' }}
+                                variant="h5" // Increased font size
+                                sx={{
+                                    fontWeight: 'bold',
+                                    fontSize: '1.75rem', // Adjust font size as needed
+                                    background: 'linear-gradient(to right, #40E0D0, #789972)', // Turquoise to Sage Green
+                                    WebkitBackgroundClip: 'text',
+                                    WebkitTextFillColor: 'transparent',
+                                }}
                             >
                                 <strong>Event Name: </strong> {bookingDetails.eventName}
                             </Typography>
+
                             <Typography variant="body1"><strong>Booking Status:</strong> {bookingDetails.bookingStatus}</Typography>
                             <Divider sx={{ my: 2 }} />
                             <Typography variant="h6" gutterBottom>Tickets</Typography>
@@ -223,13 +239,24 @@ const ConfirmPayment = () => {
                         <Slide direction="up" in={true} timeout={1500}>
                             <Button
                                 variant="contained"
-                                color="primary"
                                 onClick={handlePayment}
                                 disabled={!stripe || !elements || !cardReady || paymentLoading}
-                                sx={{ padding: '10px 20px', fontSize: '1.1rem', width: '100%', maxWidth: '300px', '&:hover': { backgroundColor: '#1976d2' } }}
+                                sx={{
+                                    padding: '10px 20px',
+                                    fontSize: '1.1rem',
+                                    width: '100%',
+                                    maxWidth: '300px',
+                                    background: 'linear-gradient(to right, #40E0D0, #789972)', // Turquoise Blue to Sage Green
+                                    color: '#fff',
+                                    transition: 'background 0.3s ease-in-out',
+                                    '&:hover': {
+                                        background: 'linear-gradient(to right, #38B2AC, #6B8E75)', // Slightly darker gradient on hover
+                                    },
+                                }}
                             >
                                 Proceed to Payment
                             </Button>
+
                         </Slide>
                     )
                 )}

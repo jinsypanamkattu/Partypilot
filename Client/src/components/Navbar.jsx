@@ -25,10 +25,11 @@ const Navbar = () => {
     <header className="bg-white shadow-md fixed w-full top-0 z-50">
       <nav className="container mx-auto px-4 py-3 flex justify-between items-center">
         <div className="flex items-center space-x-3 p-3">
-          <span className="text-blue-500 text-3xl font-extrabold tracking-wide drop-shadow-lg">
-            Party<span className="text-purple-500">Pilot</span>
-          </span>
-          <i className="fas fa-calendar-check text-purple-500 text-3xl drop-shadow-lg"></i>
+        <span className="text-3xl font-extrabold tracking-wide bg-gradient-to-r from-teal-400 via-cyan-500 to-green-400 bg-clip-text text-transparent drop-shadow-lg">
+    Party<span className="bg-gradient-to-r from-teal-500 to-green-500 bg-clip-text text-transparent">Pilot</span>
+</span>
+<i className="fas fa-calendar-check text-3xl bg-gradient-to-r from-teal-400 to-green-400 bg-clip-text text-transparent drop-shadow-lg"></i>
+
         </div>
 
 

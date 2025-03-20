@@ -353,6 +353,16 @@ const deleteEvent = async (req, res, next) => {
       res.status(500).json({ message: 'Server error' });
     }
   };
+  //router.get("/events/latest", async (req, res) => {
+    const getEventsLatest = async (req,res) =>{
+    try {
+        const events = await Event.find().sort({ createdAt: -1 }).limit(5); // Fetch latest 5 events
+        res.json(events);
+    } catch (error) {
+        res.status(500).json({ message: "Error fetching events" });
+    }
+};
+
 
   
 
@@ -369,5 +379,6 @@ module.exports = {
     createOrUpdateEvent,
     toggleEventActiveStatus,
     getAllEventsForReport,
-    getAllAdminEvents
+    getAllAdminEvents,
+    getEventsLatest
 };

@@ -38,9 +38,16 @@ export default function UserProfile() {
 
     return (
         <Container maxWidth="lg" sx={{ py: 4 }}>
-            <Typography variant="h2" align="center" fontWeight="bold" color="primary" gutterBottom>
+            <Typography
+                variant="h2"
+                align="center"
+                fontWeight="bold"
+                gutterBottom
+                sx={{ color: '#789972' }} // Sage green color
+            >
                 User Profile
             </Typography>
+
 
             <Box display="flex" flexDirection="column" alignItems="center" mb={4}>
                 {user?.profileImage && (
@@ -57,11 +64,11 @@ export default function UserProfile() {
                     {user?.email}
                 </Typography>
                 {/* Success Message */}
-            {successMessage && (
-                <Alert severity="success" sx={{ mb: 2 }}>
-                    {successMessage}
-                </Alert>
-            )}
+                {successMessage && (
+                    <Alert severity="success" sx={{ mb: 2 }}>
+                        {successMessage}
+                    </Alert>
+                )}
 
             </Box>
 
@@ -78,7 +85,7 @@ export default function UserProfile() {
                 </Tabs>
 
                 <Box p={3}>
-                    {activeTab === 'profile' && <EditProfileForm user={user} onProfileUpdate={handleProfileUpdate}/>}
+                    {activeTab === 'profile' && <EditProfileForm user={user} onProfileUpdate={handleProfileUpdate} />}
                     {activeTab === 'bookings' && <BookingDetails userId={user?._id} />}
                 </Box>
             </Paper>

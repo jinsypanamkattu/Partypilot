@@ -1,5 +1,6 @@
 import axiosInstance from './axios.jsx';
 
+
 //import axios from 'axios'; // Import your configured axios instance
 
 const userService = {
@@ -8,7 +9,7 @@ const userService = {
     try {
       //console.log('Sending login request with:', { email, password });
       const response = await axiosInstance.post('/user/login', { email, password, role });
-      console.log('Login response:', response.data);
+      //console.log('Login response:', response.data);
       return response.data;
       /*return {
         user: response.data.user, // Adjust based on actual API response
@@ -26,10 +27,61 @@ const userService = {
       const response = await axiosInstance.post('/contact', formData);
       //console.log("resp",response.data);
       return response.data;
-    }catch{
+    }catch (error){
       throw error.response?.data?.message || 'Message failed';
     }
   },
+
+  forgotPasswordFormSubmit: async({email, role}) => {
+    try{
+      
+      const response = await axiosInstance.post('/user/forgot-password',{ email, role });
+
+      //console.log("resp",response.data);
+      return response.data;
+    }catch(error){
+      //console.log("Message failed");
+      //console.error("❌ API Call Failed!");
+        //console.log("🔹 Full Error Object:", error);
+        //console.log("🔹 Error Response:", error.response?.data);  // Backend response
+        //console.log("🔹 Error Status Code:", error.response?.status);  // HTTP s
+      //throw error.response?.data?.message || 'Message failed';
+      // Instead of throwing, return the error message
+      return { error: error.response?.data?.message || "Something went wrong" };
+    }
+  },
+
+  verifyOtpForm: async({email, role, otp}) => {
+    try{
+      
+      const response = await axiosInstance.post('/user/verify-otp',{ email, role, otp });
+
+      //console.log("resp",response.data);
+      return response.data;
+    }catch(error){
+      throw error.response?.data?.message || 'Message failed';
+    }
+  },
+
+  
+
+  resetPasswordForm: async({email, role, otp, newPassword}) => {
+    try{
+      
+      const response = await axiosInstance.post('/user/reset-password',{ email, role, otp, newPassword });
+
+      console.log("resp",response.data);
+      return response.data;
+    }catch(error){
+     // throw error.response?.data?.message || 'Message failed';
+     console.error("API error:", error);
+    throw error; // Re-throw the error to be caught in the component
+    }
+  },
+
+
+
+
 
   getProfile: async () => {
     const token = localStorage.getItem('token');

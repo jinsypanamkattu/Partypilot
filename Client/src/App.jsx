@@ -40,6 +40,10 @@ import EventDetailPage from './pages/EventDetailPage';
 import EventListingPage from './pages/EventListingPage';
 import Login from './pages/Login';
 
+import ForgotPassword from "./pages/ForgotPassword";
+import VerifyOTP from "./pages/VerifyOtp";
+import ResetPassword from "./pages/ResetPassword";
+
 import ProfilePage from './pages/ProfilePage';
 
 import RegistrationForm from './pages/RegistrationForm';
@@ -145,6 +149,9 @@ const router = createBrowserRouter([
     { path: '/events', element: <MainLayout><EventListingPage /></MainLayout> },
     { path: '/events/:eventId', element: <MainLayout><EventDetailPage /></MainLayout> },
     { path: '/profile', element: <MainLayout><ProfilePage /></MainLayout> },
+    { path: '/forgot-password', element: <MainLayout><ForgotPassword /></MainLayout> },
+    { path: '/verify-otp', element: <MainLayout><VerifyOTP  /></MainLayout> },
+    { path: '/reset-password', element: <MainLayout><ResetPassword  /></MainLayout> },
         
     { path: '*', element: <Navigate to="/login" /> },
     

@@ -14,14 +14,14 @@ const EventDetailPage = () => {
     const { eventId } = useParams();
     const { eventDetails, loading, error } = useSelector((state) => state.upcomingevents);
     const user = useSelector((state) => state.auth.user);
-   
-    
+
+
     //console.log("user",user);
 
     const [selectedTickets, setSelectedTickets] = useState({}); // To store selected ticket types and quantities
     const [bookingError, setBookingError] = useState('');
     const [quantityError, setQuantityError] = useState('');
-   // const [booking, setBooking] = useState('');
+    // const [booking, setBooking] = useState('');
 
     useEffect(() => {
         if (eventId) {
@@ -90,11 +90,11 @@ const EventDetailPage = () => {
                 return;
             }
 
-           
+
             const attendeeIdUser = getUserIdFromToken();
             const attendeeId = user?._id || attendeeIdUser;
             if (!attendeeId) {
-                
+
                 //console.log("user",attendeeId);
                 setBookingError('User not found. Please log in.');
                 return;
@@ -109,10 +109,10 @@ const EventDetailPage = () => {
                 })),
                 totalPrice: getTotalPrice(),
             };
-           // console.log("Booking Payload", bookingData);
+            // console.log("Booking Payload", bookingData);
             const resultAction = await dispatch(createBooking(bookingData));
-             //console.log("Booking Payload", resultAction);
-           // console.log(booking,"test");
+            //console.log("Booking Payload", resultAction);
+            // console.log(booking,"test");
             if (createBooking.fulfilled.match(resultAction)) {
                 navigate(`/confirmPayment`);
             } else {
@@ -130,21 +130,22 @@ const EventDetailPage = () => {
     return (
         <div className="min-h-screen py-12">
             <Typography
-  variant="h2"
-  align="center"
-  gutterBottom
-  sx={{
-    fontWeight: 'bold',
-    color: '#fff',
-    textShadow: '2px 2px 10px rgba(0, 0, 0, 0.4)',
-    padding: '16px',
-    borderRadius: '12px',
-    background: 'rgba(255, 255, 255, 0.1)',
-    backdropFilter: 'blur(10px)',
-  }}
->
-  Event Details
-</Typography>
+                     variant="h2"
+                     align="center"
+                     gutterBottom
+                     sx={{
+                       fontWeight: 'bold',
+                       color: '#fff',
+                       textShadow: '2px 2px 10px rgba(0, 0, 0, 0.4)',
+                       padding: '16px',
+                       borderRadius: '12px',
+                       background: 'rgba(255, 255, 255, 0.1)',
+                       backdropFilter: 'blur(10px)',
+                     }}
+                   >
+                     Event Details
+                   </Typography>
+           
             <Container maxWidth="lg">
                 <Card className="shadow-lg rounded-lg overflow-hidden">
                     {eventDetails.image && (
@@ -157,9 +158,15 @@ const EventDetailPage = () => {
                         />
                     )}
                     <CardContent className="text-white">
-                        <Typography variant="h3" component="h1" className="font-bold text-5xl text-center text-yellow-400 mb-4">
+                        <Typography
+                            variant="h3"
+                            component="h1"
+                            className="font-black text-7xl text-center bg-gradient-to-r from-green-800 via-emerald-700 to-green-600 bg-clip-text text-transparent mb-4"
+                        >
                             {eventDetails.name}
                         </Typography>
+
+
                         <Typography variant="body1" color="textSecondary" paragraph className="text-lg text-gray-200 mb-4">
                             {eventDetails.description}
                         </Typography>
@@ -170,9 +177,13 @@ const EventDetailPage = () => {
                             <strong>Location:</strong> {eventDetails.location}
                         </Typography>
 
-                        <Typography variant="h4" className="text-3xl font-semibold text-yellow-300 mb-4">
+                        <Typography
+                            variant="h4"
+                            className="text-3xl font-semibold bg-gradient-to-r from-blue-400 via-purple-500 to-purple-700 bg-clip-text text-transparent mb-4"
+                        >
                             Available Tickets
                         </Typography>
+
 
                         {eventDetails.tickets && eventDetails.tickets.length > 0 ? (
                             <Grid container spacing={3}>
@@ -191,7 +202,7 @@ const EventDetailPage = () => {
                                             }}
                                             elevation={3}
                                         >
-                                            <CardContent className="bg-gradient-to-r from-indigo-500 via-purple-600 to-pink-600 p-4 rounded-lg">
+                                            <CardContent className="bg-gradient-to-r from-teal-400 via-cyan-500 to-purple-400 p-4 rounded-lg">
                                                 <Typography variant="h5" component="div" className="text-white text-center">
                                                     {ticket.type}
                                                 </Typography>
@@ -207,6 +218,7 @@ const EventDetailPage = () => {
                                                     </Typography>
                                                 )}
                                             </CardContent>
+
                                         </Card>
                                     </Grid>
                                 ))}
@@ -259,13 +271,15 @@ const EventDetailPage = () => {
                             <Button
                                 onClick={handleBookTicket}
                                 variant="contained"
-                                color="primary"
                                 size="large"
-                                className="py-3 px-6 text-xl rounded-md transition-all duration-300 transform hover:scale-105 hover:bg-purple-700 mx-auto block"
+                                className="py-3 px-6 text-xl rounded-md transition-all duration-300 transform hover:scale-105 
+                   bg-gradient-to-r from-green-300 via-teal-400 to-emerald-500 text-white 
+                   hover:from-green-400 hover:via-teal-500 hover:to-emerald-600 mx-auto block"
                             >
                                 Book Tickets
                             </Button>
                         </div>
+
                     </CardContent>
                 </Card>
             </Container>

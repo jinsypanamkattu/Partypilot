@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { loginUser } from '../redux/slices/authSlice';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Lock, Mail, UserPlus } from 'lucide-react';
+import UpcomimgEvents from "../components/UpcomingEvents";
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -60,25 +61,27 @@ function Login() {
 
     return (
 
-        <div className="flex items-center justify-center min-h-[70px] bg-gradient-to-br from-blue-50 to-blue-100">
-            <div className="w-full max-w-md p-8">
-                <form
-                    onSubmit={handleSubmit}
-                    className="bg-white shadow-2xl rounded-xl p-8 space-y-6 border border-gray-100"
-                >
+        <div className="flex flex-col md:flex-row items-center justify-center p-6 mt-10 mb-10">
+            {/* Left Side: Upcoming Events */}
+            <div className="hidden md:flex w-full md:w-1/2 justify-center">
+                <UpcomimgEvents />
+            </div>
+
+            {/* Right Side: Login Form */}
+            <div className="w-full md:w-1/2 flex justify-center">
+                <div className="w-full max-w-md bg-white shadow-2xl rounded-xl p-8 space-y-6 border border-gray-100">
                     <div className="text-center">
                         <h2 className="text-3xl font-bold text-gray-800 mb-2">Welcome Back</h2>
                         <p className="text-gray-500 mb-6">Sign in to continue</p>
                     </div>
 
                     {errorMsg && (
-                        <div className="w-full max-w-md bg-red-50 border border-red-200 text-red-600 p-3 rounded-lg text-center whitespace-normal break-words">
+                        <div className="bg-red-50 border border-red-200 text-red-600 p-3 rounded-lg text-center">
                             {errorMsg}
                         </div>
                     )}
 
-
-                    <div className="space-y-4">
+                    <form onSubmit={handleSubmit} className="space-y-4">
                         <div className="relative">
                             <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                             <input
@@ -100,6 +103,7 @@ function Login() {
                                 className="w-full p-3 pl-10 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
                             />
                         </div>
+
                         <div className="relative">
                             <UserPlus className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                             <select
@@ -115,21 +119,18 @@ function Login() {
                         </div>
 
                         <div className="flex justify-between items-center">
-                            <a
-                                href="#"
-                                className="text-sm text-blue-600 hover:text-blue-800 transition duration-300"
-                            >
+                            <a href="/forgot-password" className="text-sm text-[#789972] hover:text-[#5F7A64] transition duration-300">
                                 Forgot Password?
                             </a>
                         </div>
 
                         <button
                             type="submit"
-                            className="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out transform hover:scale-[1.02] shadow-md"
+                            className="w-full bg-gradient-to-r from-[#40E0D0] to-[#8FBC8F] text-white p-3 rounded-lg transition duration-300 ease-in-out transform hover:scale-[1.02] shadow-md hover:from-[#36CFC9] hover:to-[#76A77D]"
                         >
                             Sign In
                         </button>
-                    </div>
+                    </form>
 
                     <div className="text-center mt-6">
                         <div className="flex items-center justify-center space-x-2">
@@ -138,15 +139,12 @@ function Login() {
                             <div className="h-px bg-gray-300 w-full"></div>
                         </div>
 
-                        <a
-                            href="/register"
-                            className="flex items-center justify-center w-full mt-4 p-3 border border-gray-200 rounded-lg text-gray-600 hover:bg-gray-50 transition duration-300"
-                        >
+                        <a href="/register" className="flex items-center justify-center w-full mt-4 p-3 border border-gray-200 rounded-lg text-gray-600 hover:bg-gray-50 transition duration-300">
                             <UserPlus className="mr-2" />
                             Create New Account
                         </a>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     );

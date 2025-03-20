@@ -107,22 +107,24 @@ const EventCard = ({ event, index }) => {
 
             {/* Button Aligned at the Bottom */}
             <CardActions sx={{ justifyContent: 'center', paddingBottom: '16px' }}>
-                <Button
-                    component={Link}
-                    to={`/events/${event._id}`}
-                    variant="contained"
-                    sx={{
-                        background: 'linear-gradient(45deg, #9333ea, #d946ef)',
-                        color: '#fff',
-                        padding: '8px 24px',
-                        borderRadius: '50px',
-                        '&:hover': {
-                            background: 'linear-gradient(45deg, #7e22ce, #c026d3)',
-                        },
-                    }}
-                >
-                    View Details
-                </Button>
+            <Button
+    component={Link}
+    to={`/events/${event._id}`}
+    variant="contained"
+    sx={{
+        background: 'linear-gradient(45deg, #38b2ac, #9ae6b4)', // Turquoise to Light Green
+        color: '#fff',
+        padding: '8px 24px',
+        borderRadius: '50px',
+        transition: 'all 0.3s ease-in-out',
+        '&:hover': {
+            background: 'linear-gradient(45deg, #2c7a7b, #81e6d9)', // Darker hover effect
+        },
+    }}
+>
+    View Details
+</Button>
+
             </CardActions>
         </Card>
     );

@@ -107,7 +107,7 @@ export function BookingDetails({ userId }) {
                 <>
                     <TableContainer component={Paper} elevation={6} sx={{ borderRadius: "10px" }}>
                         <Table>
-                            <TableHead sx={{ backgroundColor: "#1976d2" }}>
+                            <TableHead sx={{ backgroundColor: "#789972" }}>
                                 <TableRow>
                                     <TableCell align="center" sx={{ color: "white" }}>#</TableCell>
                                     <TableCell align="center" sx={{ color: "white" }}>Event Name</TableCell>
@@ -129,13 +129,22 @@ export function BookingDetails({ userId }) {
                                                 <Box sx={{ display: "flex", justifyContent: "center", gap: "10px" }}>
                                                     <Button
                                                         variant="contained"
-                                                        color="primary"
                                                         onClick={() => handleConfirmBooking(booking.id)}
-                                                        disabled={(booking.bookingStatus === "Confirmed" || booking.bookingStatus === "Cancelled")}
-                                                        sx={{ textTransform: "none" }}
+                                                        disabled={booking.bookingStatus === "Confirmed" || booking.bookingStatus === "Cancelled"}
+                                                        sx={{
+                                                            textTransform: "none",
+                                                            background: "linear-gradient(45deg, #40E0D0, #8FBC8F)", // Turquoise to Green gradient
+                                                            color: "#fff",
+                                                            padding: "10px 20px",
+                                                            transition: "0.3s ease-in-out",
+                                                            "&:hover": {
+                                                                background: "linear-gradient(45deg, #36CFC9, #76A77D)", // Slightly deeper transition on hover
+                                                            },
+                                                        }}
                                                     >
                                                         Confirm Booking
                                                     </Button>
+
                                                     <Button
                                                         variant="outlined"
                                                         color="error"

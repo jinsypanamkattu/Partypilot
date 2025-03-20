@@ -8,7 +8,9 @@ const UserSchema = new mongoose.Schema({
   profileImage: { type: String },
   phone: { type: String },
   address: { type: String },
-  status: { type:String,enum: ['active','inactive'], default:'active' }
+  status: { type:String,enum: ['active','inactive'], default:'active' },
+  otp: { type: String },
+  otpExpires: { type: Date },
 }, { timestamps: true });
 
 // Create a unique compound index on email and role

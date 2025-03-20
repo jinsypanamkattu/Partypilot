@@ -19,7 +19,7 @@ router.get("/organizer/:id", authenticate, authorizeRoles("admin", "organizer"),
 
 router.patch("/:id/status", eventController.toggleEventActiveStatus);
  
-
+router.get('/latest',eventController.getEventsLatest);
 
 router.get('/published', eventController.getAllPublishedEvents); // Get event by ID
 router.get('/:id', eventController.getEventById); // Get event by ID
